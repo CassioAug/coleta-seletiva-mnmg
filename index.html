@@ -7,6 +7,11 @@
     <title>Coleta Seletiva de Lixo</title>
     <link rel="stylesheet" href="css/styles.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 
 <body>
@@ -187,11 +192,12 @@
     <section id="pontoscoleta">
         <h2>Pontos de Coleta</h2>
         <p>
-            Infelizmente ainda não há pontos de coleta em
-            <strong>Morada Nova de Minas</strong>, e estou buscando a ajuda de
-            catadores autônomos, voluntários para a criação de pontos de coleta, ou
-            ações governamentais. Todavia, a separação do lixo ainda traz
-            benefícios, como por exemplo:
+            Abaixo você pode ver os pontos de coleta voluntários já disponíveis em <strong>Morada Nova de
+                Minas</strong>. Clique nos ícones para obter mais informações.</p>
+        <div id="mapa"></div>
+        <br>
+        <p>
+            Benefícios da coleta seletiva:
         </p>
         <ul>
             <li>
