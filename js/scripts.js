@@ -57,60 +57,52 @@ if (form) {
     statusDiv.style.display = "block";
     statusDiv.className = "info";
 
-    // Coletando dados
-    const nome = document.querySelector('input[name="entry.1704902272"]');
-    const endereco = document.querySelector('input[name="entry.899152083"]');
-    const telefone = document.querySelector('input[name="entry.268666988"]');
-    const materiais = document.querySelector('input[name="entry.2031907264"]');
-
-    // Verificando se os elementos existem
-    if (!nome || !endereco || !telefone || !materiais) {
-      statusDiv.textContent = "Erro: Campos do formulário não encontrados.";
-      statusDiv.className = "error";
-      return;
-    }
-
-    const formData = {
-      "entry.1704902272": nome.value,
-      "entry.899152083": endereco.value,
-      "entry.268666988": telefone.value,
-      "entry.2031907264": materiais.value,
-    };
-
-    console.log("Dados coletados:", formData);
-
+    // Coletando dados usando FormData
+    const formData = new FormData(form);
     const urlEncodedData = new URLSearchParams(formData).toString();
+
     const formActionURL =
       "https://docs.google.com/forms/d/e/1FAIpQLSei-pLTwslQSknAgEXQ1j6KOMD-BaiaLfjRHoo9dmC8VjzffQ/formResponse";
 
-    // CORS e XMLHttpRequest
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", formActionURL, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    // Criando um formulário temporário
+    const tempForm = document.createElement("form");
+    tempForm.style.display = "none";
+    tempForm.method = "POST";
+    tempForm.action = formActionURL;
+    tempForm.target = "hiddenIframe";
 
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        statusDiv.textContent =
-          "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
-        statusDiv.className = "success";
-        form.reset();
+    for (const [key, value] of formData.entries()) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = value;
+      tempForm.appendChild(input);
+    }
 
-        setTimeout(() => {
-          statusDiv.style.display = "none";
-        }, 6000);
-      }
-    };
+    // iframe oculto para evitar redirecionamento
+    let iframe = document.getElementById("hiddenIframe");
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.name = "hiddenIframe";
+      iframe.id = "hiddenIframe";
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+    }
 
-    xhr.onerror = function () {
+    document.body.appendChild(tempForm);
+    tempForm.submit();
+    document.body.removeChild(tempForm);
+
+    // Sucesso após 1 segundo
+    setTimeout(() => {
       statusDiv.textContent =
-        "Ocorreu um erro de rede. Verifique sua conexão e tente novamente.";
-      statusDiv.className = "error";
+        "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
+      statusDiv.className = "success";
+      form.reset();
 
       setTimeout(() => {
         statusDiv.style.display = "none";
       }, 6000);
-    };
-
-    xhr.send(urlEncodedData);
+    }, 1000);
   });
 }
