@@ -57,51 +57,60 @@ if (form) {
     statusDiv.style.display = "block";
     statusDiv.className = "info";
 
-    // Coleta os dados manualmente para garantir que estão corretos
+    // Coletando dados
+    const nome = document.querySelector('input[name="entry.1704902272"]');
+    const endereco = document.querySelector('input[name="entry.899152083"]');
+    const telefone = document.querySelector('input[name="entry.268666988"]');
+    const materiais = document.querySelector('input[name="entry.2031907264"]');
+
+    // Verificando se os elementos existem
+    if (!nome || !endereco || !telefone || !materiais) {
+      statusDiv.textContent = "Erro: Campos do formulário não encontrados.";
+      statusDiv.className = "error";
+      return;
+    }
+
     const formData = {
-      "entry.1704902272": document.getElementById("nome").value,
-      "entry.899152083": document.getElementById("endereco").value,
-      "entry.268666988": document.getElementById("telefone").value,
-      "entry.2031907264": document.getElementById("materiais").value,
+      "entry.1704902272": nome.value,
+      "entry.899152083": endereco.value,
+      "entry.268666988": telefone.value,
+      "entry.2031907264": materiais.value,
     };
 
-    const urlEncodedData = new URLSearchParams(formData).toString();
+    console.log("Dados coletados:", formData);
 
+    const urlEncodedData = new URLSearchParams(formData).toString();
     const formActionURL =
       "https://docs.google.com/forms/d/e/1FAIpQLSei-pLTwslQSknAgEXQ1j6KOMD-BaiaLfjRHoo9dmC8VjzffQ/formResponse";
 
-    // debug log
-    console.log("Dados sendo enviados:", formData);
-    console.log("URL encoded:", urlEncodedData);
+    // CORS e XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", formActionURL, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    fetch(formActionURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: urlEncodedData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          statusDiv.textContent =
-            "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
-          statusDiv.className = "success";
-          form.reset();
-        } else {
-          throw new Error("Erro na resposta do servidor");
-        }
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
         statusDiv.textContent =
-          "Ocorreu um erro ao enviar seu cadastro. Por favor, tente novamente. Erro: " +
-          error.message;
-        statusDiv.className = "error";
-      })
-      .finally(() => {
+          "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
+        statusDiv.className = "success";
+        form.reset();
+
         setTimeout(() => {
           statusDiv.style.display = "none";
         }, 6000);
-      });
+      }
+    };
+
+    xhr.onerror = function () {
+      statusDiv.textContent =
+        "Ocorreu um erro de rede. Verifique sua conexão e tente novamente.";
+      statusDiv.className = "error";
+
+      setTimeout(() => {
+        statusDiv.style.display = "none";
+      }, 6000);
+    };
+
+    xhr.send(urlEncodedData);
   });
 }
