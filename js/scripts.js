@@ -1,4 +1,5 @@
 // Voltar ao topo
+
 const topBtn = document.getElementById("topBtn");
 window.onscroll = function () {
   if (
@@ -16,33 +17,46 @@ topBtn.onclick = function () {
 };
 
 // Menu toggle para mobile
-const menuToggle = document.querySelector(".menu-toggle");
-const menu = document.querySelector(".menu");
 
-menuToggle.addEventListener("click", function () {
-  menu.classList.toggle("menu-visible");
-});
+const menuToggle = document.querySelector(".navbar-toggler");
+const navbarNav = document.querySelector("#navbarNav");
+
+if (menuToggle && navbarNav) {
+  menuToggle.addEventListener("click", function () {
+    navbarNav.classList.toggle("show");
+  });
+}
 
 // Mapa Interativo com Leaflet.js
-// 1. Inicializando o mapa, definindo coordenadas e zoom.
-const map = L.map("mapa").setView([-18.611, -45.361], 14);
 
-// 2. Adicionando "tile layer" com OpenStreetMap.
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-}).addTo(map);
+function initMap() {
+  // Inicializando o mapa, definindo coordenadas e zoom.
+  const map = L.map("mapa").setView([-18.611, -45.361], 14);
 
-// 3. Adicionando marcadores de exemplo.
-const ponto1 = L.marker([-18.606978, -45.3474]).addTo(map);
-ponto1.bindPopup(
-  "<b>Ponto de Coleta Voluntário</b><br>Recebe: Plástico e Papelão."
-);
+  // Adicionando "tile layer" com OpenStreetMap.
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
 
-const ponto2 = L.marker([-18.609, -45.358]).addTo(map);
-ponto2.bindPopup(
-  "<b>Ponto de coleta voluntário.</b><br>Recebe: Vidro e Metal."
-);
+  // Adicionando marcadores a partir do arquivo marcadores.js
+  pontosColeta.forEach((ponto) => {
+    const marcador = L.marker(ponto.coordenadas).addTo(map);
+
+    // Conteúdo do popup
+    const popupContent = `
+      <b>${ponto.nome}</b><br>
+      <i>${ponto.endereco}</i><br>
+      Recebe: ${ponto.materiais.join(", ")}<br>
+      Horário: ${ponto.horario}
+    `;
+
+    marcador.bindPopup(popupContent);
+  });
+}
+
+// Inicializando o mapa
+document.addEventListener("DOMContentLoaded", initMap);
 
 // Formulário de Voluntários
 
@@ -93,7 +107,7 @@ if (form) {
     tempForm.submit();
     document.body.removeChild(tempForm);
 
-    // Sucesso após 1 segundo
+    // Confirmação de envio
     setTimeout(() => {
       statusDiv.textContent =
         "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
@@ -106,3 +120,21 @@ if (form) {
     }, 1000);
   });
 }
+
+// Navegação suave
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Para links internos
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+});

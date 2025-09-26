@@ -4,264 +4,445 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Coleta Seletiva de Lixo</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <title>Coleta Seletiva de Lixo - Morada Nova de Minas</title>
 
+    <!-- Carregando estilos -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-    <header>
-        <h1>Campanha de Coleta Seletiva de Lixo</h1>
-        <h1>Morada Nova de Minas - MG</h1>
-        <p>
-            Contribua você também para um futuro mais sustentável, e ajude a cuidar
-            do seu município!
-        </p>
-    </header>
-
-    <nav>
-        <button class="menu-toggle" aria-label="Abrir menu">&#9776; Menu</button>
-        <ul class="menu">
-            <li><a href="#boasvindas">Boas-Vindas</a></li>
-            <li><a href="#oquee">O que é?</a></li>
-            <li><a href="#beneficios">Benefícios</a></li>
-            <li><a href="#comofazer">Como realizar?</a></li>
-            <li><a href="#materiais">Materiais Separáveis</a></li>
-            <li><a href="#naoseparaveis">Não Separáveis</a></li>
-            <li><a href="#pontoscoleta">Pontos de Coleta</a></li>
-            <li><a href="#inscricao">Cadastre-se</a></li>
-        </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-recycle me-2"></i>Coleta Seletiva
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#boasvindas">Boas-Vindas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#oquee">O que é?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#beneficios">Benefícios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#comofazer">Como Fazer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pontoscoleta">Pontos de Coleta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inscricao">Cadastre-se</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <section id="boasvindas">
-        <h2>Bem-vindo!</h2>
-        <p>
-            <strong>Você sabia que o município de Morada Nova de Minas - MG ainda não
-                possui um sistema de coleta seletiva de lixo e reciclagem?</strong>
-        </p>
-        <p>
-            Esse site tem como objetivo conscientizar a população local e os órgãos
-            públicos sobre as vantagens e a importância de iniciar esse processo,
-            com a intenção de trazer para o município estas ações de desenvolvimento
-            sustentável, melhorando a qualidade de vida da comunidade.
-        </p>
+    <!-- Hero Section para destaque -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Campanha de Coleta Seletiva</h1>
+            <h2 class="h3 mb-4">Morada Nova de Minas - MG</h2>
+            <p class="lead">
+                Contribua você também para um futuro mais sustentável e ajude a cuidar do seu município!
+            </p>
+            <a href="#inscricao" class="btn btn-primary btn-lg mt-3">Participe Agora</a>
+        </div>
     </section>
 
-    <section id="oquee">
-        <h2>O que é a coleta seletiva?</h2>
-        <p>
-            A coleta seletiva é o processo de separação e recolhimento de resíduos
-            conforme o seu material, como papel, plástico, vidro e metal. Esta
-            separação permite que os resíduos sejam reciclados de forma adequada,
-            reduzindo o impacto ambiental.
-        </p>
-        <p>Cada tipo de resíduo possui um ciclo de reciclagem específico:</p>
-        <p>
-            <strong>Papel:</strong> O papel reciclado pode ser usado para produzir
-            novos papéis, como cadernos, caixas e até papel higiênico. Além disso, a
-            reciclagem de papel pode economizar milhares de litros de água, que é
-            utilizada em sua produção.
-        </p>
-
-        <p>
-            <strong>Plástico:</strong> Plásticos recicláveis, como garrafas PET, são
-            transformados em novos produtos, como embalagens e até roupas. A
-            reciclagem do plástico ajuda a reduzir a poluição dos oceanos e a
-            demanda por petróleo, usado na produção de plásticos novos.
-        </p>
-        <p>
-            <strong>Vidro:</strong> O vidro é 100% reciclável e pode ser
-            reaproveitado inúmeras vezes sem perder qualidade. A reciclagem de vidro
-            economiza energia, pois o vidro reciclado derrete a uma temperatura mais
-            baixa do que as matérias-primas usadas para fabricar vidro novo.
-        </p>
-        <p>
-            <strong>Metal:</strong> A reciclagem de metais, como alumínio e aço,
-            reduz drasticamente o consumo de energia.
-        </p>
-        <p>
-            Além de beneficiar o meio ambiente, a coleta seletiva reduz o volume de
-            resíduos enviados para aterros sanitários, aumentando a vida útil desses
-            locais e contribuindo para a saúde pública.
-        </p>
-        <img src="images/diagrama-reciclagem.png" alt="Diagrama de Reciclagem" class="img-reciclagem" />
-    </section>
-
-    <section id="beneficios">
-        <h2>Benefícios da Coleta Seletiva e Reciclagem</h2>
-        <p>
-            A coleta seletiva de lixo trás vários benefícios para o meio ambiente, e
-            também para a população local. Entre esses vários benefícios, podemos
-            citar:
-        </p>
-        <ul>
-            <li>
-                <strong>Redução do lixo enviado aos aterros sanitários:</strong> A
-                coleta seletiva diminui a quantidade de resíduos que acaba nos
-                aterros. Isso é importante porque aterros estão se esgotando, e os
-                materiais que são enviados para esses locais demoram muito tempo para
-                se decompor, ocupando espaço e liberando gases de efeito estufa.
-            </li>
-            <li>
-                <strong>Economia de recursos naturais:</strong> Reciclar significa
-                reutilizar materiais que já foram extraídos da natureza, como madeira,
-                petróleo, minérios e areia. Isso reduz a necessidade de explorar mais
-                recursos naturais, contribuindo para a preservação do meio ambiente e
-                a conservação dos ecossistemas.
-            </li>
-            <li>
-                <strong>Economia de energia:</strong> A reciclagem de materiais como
-                alumínio, vidro e papel consome muito menos energia do que a produção
-                de novos materiais a partir de matérias-primas virgens.
-            </li>
-            <li>
-                <strong>Redução da poluição ambiental:</strong> Ao separar e reciclar
-                resíduos corretamente, evitamos que materiais perigosos ou não
-                biodegradáveis acabem no meio ambiente, como plásticos que poluem os
-                oceanos e metais pesados que contaminam o solo e os cursos d'água.
-            </li>
-            <li>
-                <strong>Geração de emprego:</strong> A coleta seletiva cria
-                oportunidades de trabalho em diversos setores, como cooperativas de
-                reciclagem, empresas de processamento de materiais reciclados e
-                catadores autônomos.
-            </li>
-            <li>
-                <strong>Conscientização e educação ambiental:</strong> A prática da
-                coleta seletiva contribui para a criação de uma cultura de
-                responsabilidade ambiental. Ao separar o lixo e participar de
-                programas de reciclagem, as pessoas se tornam mais conscientes sobre o
-                impacto que seus hábitos de consumo têm no planeta, incentivando
-                comportamentos mais sustentáveis no dia a dia.
-            </li>
-        </ul>
-    </section>
-
-    <section id="comofazer">
-        <h2>Como realizar a coleta seletiva?</h2>
-        <p>
-            A separação básica é feita em cinco principais categorias, cada uma
-            identificada por uma cor específica de acordo com o padrão de cores da
-            coleta seletiva:
-        </p>
-        <ul>
-            <li style="color: blue"><strong>Papel/Papelão: Azul</strong></li>
-            <li style="color: red"><strong>Plásticos: Vermelho</strong></li>
-            <li style="color: green"><strong>Vidros: Verde</strong></li>
-            <li style="color: rgb(141, 141, 0)">
-                <strong>Metais: Amarelo</strong>
-            </li>
-            <li style="color: brown">
-                <strong>Resíduos Orgânicos: Marrom</strong>
-            </li>
-        </ul>
-        <p>
-            Antes de descartar itens como embalagens de alimentos, garrafas e latas,
-            lave-os para remover restos de comida ou líquidos. Isso evita a
-            proliferação de insetos e mau cheiro, além de garantir que os materiais
-            possam ser reciclados.
-        </p>
-    </section>
-
-    <section id="materiais">
-        <h2>Materiais que podem ser separados</h2>
-        <ul>
-            <li>Papel e papelão (limpos e secos)</li>
-            <li>Plásticos (garrafas PET, sacos plásticos, embalagens)</li>
-            <li>Metais (latas de alumínio, latas de alimentos)</li>
-            <li>Vidros (garrafas, potes)</li>
-        </ul>
-    </section>
-
-    <section id="naoseparaveis">
-        <h2>Materiais que não podem ser separados</h2>
-        <ul>
-            <li>Resíduos orgânicos (restos de comida)</li>
-            <li>
-                Materiais contaminados (guardanapos sujos, fraldas, papel higiênico)
-            </li>
-            <li>Espelhos, cerâmicas e lâmpadas fluorescentes</li>
-        </ul>
-    </section>
-
-    <section id="pontoscoleta">
-        <h2>Pontos de Coleta</h2>
-        <p>
-            Abaixo você pode ver os pontos de coleta voluntários já disponíveis em <strong>Morada Nova de
-                Minas</strong>. Clique nos ícones para obter mais informações.</p>
-        <div id="mapa"></div>
-        <br>
-        <p>
-            Benefícios da coleta seletiva:
-        </p>
-        <ul>
-            <li>
-                <strong>Facilitação para Catadores:</strong> Muitos catadores de
-                materiais recicláveis dependem da coleta de resíduos para sua
-                subsistência. Ao separar os materiais recicláveis, você facilita o
-                trabalho desses profissionais, aumentando a eficiência da reciclagem
-                informal e contribuindo para a geração de renda dessas pessoas.
-            </li>
-            <li>
-                <strong>Incentivo a Iniciativas Comunitárias:</strong> A separação do
-                lixo pode estimular a criação de programas locais ou comunitários de
-                reciclagem e manejo de resíduos, mesmo na ausência de iniciativas
-                governamentais.
-            </li>
-            <li>
-                <strong>Pressão por Políticas Públicas:</strong> A prática contínua da
-                separação do lixo pela população pode servir como pressão para que as
-                autoridades implementem sistemas de coleta seletiva e políticas de
-                gestão de resíduos mais eficientes.
-            </li>
-        </ul>
-    </section>
-
-    <section id="inscricao">
-        <h2>Cadastro de Pontos de Coleta Voluntários</h2>
-        <p>
-            Preencha o formulário abaixo para que tenha seu ponto adicionado ao mapa. <br>
-            <strong>Observação:</strong> A inclusão no site pode demorar alguns dias, pois depende de avaliação humana.
-        </p>
-
-        <form id="volunteer-form" class="card">
-            <div class="form-group">
-                <label for="nome">Nome do responsável</label>
-                <input type="text" id="nome" name="entry.1704902272" required>
+    <!-- Conteúdo Principal -->
+    <main class="container my-5">
+        <!-- Boas-Vindas -->
+        <section id="boasvindas" class="mb-5">
+            <h2 class="section-title">Bem-vindo!</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                <strong>Você sabia que o município de Morada Nova de Minas - MG ainda não
+                                    possui um sistema de coleta seletiva de lixo e reciclagem?</strong>
+                            </p>
+                            <p class="card-text">
+                                Este site tem como objetivo conscientizar a população local e os órgãos
+                                públicos sobre as vantagens e a importância de iniciar esse processo,
+                                com a intenção de trazer para o município estas ações de desenvolvimento
+                                sustentável, melhorando a qualidade de vida da comunidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="endereco">Endereço do ponto de coleta</label>
-                <input type="text" id="endereco" name="entry.899152083" placeholder="Rua, Número, Bairro" required>
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone para contato</label>
-                <input type="tel" id="telefone" name="entry.268666988" required>
-            </div>
-            <div class="form-group">
-                <label for="materiais">Tipos de materiais a receber</label>
-                <input type="text" id="materiais" name="entry.2031907264" placeholder="Ex: Plástico, Vidro, Papelão"
-                    required>
-            </div>
-            <button type="submit" class="cta-button">Enviar Cadastro</button>
-            <div id="form-status"></div>
-        </form>
+        </section>
 
+        <!-- O que é Coleta Seletiva -->
+        <section id="oquee" class="mb-5">
+            <h2 class="section-title">O que é a coleta seletiva?</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <p class="card-text">
+                                A coleta seletiva é o processo de separação e recolhimento de resíduos
+                                conforme o seu material, como papel, plástico, vidro e metal. Esta
+                                separação permite que os resíduos sejam reciclados de forma adequada,
+                                reduzindo o impacto ambiental.
+                            </p>
+                            <p class="card-text">Cada tipo de resíduo possui um ciclo de reciclagem específico:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="images/diagrama-reciclagem.png" alt="Diagrama de Reciclagem" class="img-fluid rounded">
+                </div>
+            </div>
 
-    </section>
+            <div class="row mt-4">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header text-center">
+                            <i class="bi bi-file-earmark-text fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Papel</h5>
+                            <p class="card-text">O papel reciclado pode ser usado para produzir novos papéis,
+                                economizando milhares de litros de água.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header text-center">
+                            <i class="bi bi-droplet fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Plástico</h5>
+                            <p class="card-text">Plásticos recicláveis são transformados em novos produtos, ajudando a
+                                reduzir a poluição dos oceanos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header text-center">
+                            <i class="bi bi-cup-straw fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Vidro</h5>
+                            <p class="card-text">O vidro é 100% reciclável e pode ser reaproveitado inúmeras vezes sem
+                                perder qualidade.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header text-center">
+                            <i class="bi bi-gear fs-1"></i>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Metal</h5>
+                            <p class="card-text">A reciclagem de metais reduz drasticamente o consumo de energia em
+                                comparação com a produção de novos materiais.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer>
-        <p>
-            &copy; 2024, Cássio Augusto Couto Soares. Todos os direitos reservados.
-        </p>
+        <!-- Benefícios -->
+        <section id="beneficios" class="mb-5">
+            <h2 class="section-title">Benefícios da Coleta Seletiva</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-trash benefit-icon"></i>
+                            <h5 class="card-title">Redução de Lixo em Aterros</h5>
+                            <p class="card-text">Diminui a quantidade de resíduos que acaba nos aterros, aumentando sua
+                                vida útil.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-tree benefit-icon"></i>
+                            <h5 class="card-title">Economia de Recursos</h5>
+                            <p class="card-text">Reciclar significa reutilizar materiais, reduzindo a necessidade de
+                                explorar mais recursos naturais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-lightning benefit-icon"></i>
+                            <h5 class="card-title">Economia de Energia</h5>
+                            <p class="card-text">A reciclagem consome menos energia do que a produção de novos
+                                materiais.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-water benefit-icon"></i>
+                            <h5 class="card-title">Redução da Poluição</h5>
+                            <p class="card-text">Evita que materiais perigosos acabem no meio ambiente, contaminando
+                                solo e água.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people benefit-icon"></i>
+                            <h5 class="card-title">Geração de Emprego</h5>
+                            <p class="card-text">Cria oportunidades de trabalho em cooperativas e empresas de
+                                reciclagem.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-book benefit-icon"></i>
+                            <h5 class="card-title">Educação Ambiental</h5>
+                            <p class="card-text">Contribui para a criação de uma cultura de responsabilidade ambiental.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Fazer -->
+        <section id="comofazer" class="mb-5">
+            <h2 class="section-title">Como realizar a coleta seletiva?</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                A separação básica é feita em cinco principais categorias, cada uma
+                                identificada por uma cor específica de acordo com o padrão de cores da
+                                coleta seletiva:
+                            </p>
+
+                            <div class="material-category material-paper">
+                                <h5><i class="bi bi-square-fill text-primary me-2"></i> Papel/Papelão: Azul</h5>
+                                <p class="mb-0">Jornais, revistas, caixas de papelão, folhas de papel</p>
+                            </div>
+
+                            <div class="material-category material-plastic">
+                                <h5><i class="bi bi-square-fill text-danger me-2"></i> Plásticos: Vermelho</h5>
+                                <p class="mb-0">Garrafas PET, embalagens, sacos plásticos</p>
+                            </div>
+
+                            <div class="material-category material-glass">
+                                <h5><i class="bi bi-square-fill text-success me-2"></i> Vidros: Verde</h5>
+                                <p class="mb-0">Garrafas, potes, frascos de vidro</p>
+                            </div>
+
+                            <div class="material-category material-metal">
+                                <h5><i class="bi bi-square-fill text-warning me-2"></i> Metais: Amarelo</h5>
+                                <p class="mb-0">Latas de alumínio, latas de alimentos, arames</p>
+                            </div>
+
+                            <div class="material-category material-organic">
+                                <h5><i class="bi bi-square-fill" style="color: #795548" class="me-2"></i> Resíduos
+                                    Orgânicos: Marrom</h5>
+                                <p class="mb-0">Restos de alimentos, cascas de frutas e legumes</p>
+                            </div>
+
+                            <p class="mt-3">
+                                <strong>Dica importante:</strong> Antes de descartar itens como embalagens de alimentos,
+                                garrafas e latas, lave-os para remover restos de comida ou líquidos. Isso evita a
+                                proliferação de insetos e mau cheiro, além de garantir que os materiais possam ser
+                                reciclados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-success text-white">
+                            <h5 class="mb-0"><i class="bi bi-check-circle me-2"></i> Materiais Separáveis</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Papel e papelão (limpos e secos)</li>
+                                <li class="list-group-item">Plásticos (garrafas PET, sacos plásticos, embalagens)</li>
+                                <li class="list-group-item">Metais (latas de alumínio, latas de alimentos)</li>
+                                <li class="list-group-item">Vidros (garrafas, potes)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
+                            <h5 class="mb-0"><i class="bi bi-x-circle me-2"></i> Materiais Não Separáveis</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Resíduos orgânicos (restos de comida)</li>
+                                <li class="list-group-item">Materiais contaminados (guardanapos sujos, fraldas)</li>
+                                <li class="list-group-item">Espelhos, cerâmicas e lâmpadas fluorescentes</li>
+                                <li class="list-group-item">Pilhas e baterias (devem ter descarte especial)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pontos de Coleta -->
+        <section id="pontoscoleta" class="mb-5">
+            <h2 class="section-title">Pontos de Coleta</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                Abaixo você pode ver os pontos de coleta voluntários já disponíveis em
+                                <strong>Morada Nova de Minas</strong>. Clique nos ícones para obter mais informações.
+                            </p>
+                            <div id="mapa"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-person-check benefit-icon"></i>
+                            <h5>Facilitação para Catadores</h5>
+                            <p>Ao separar os materiais recicláveis, você facilita o trabalho dos catadores, contribuindo
+                                para a geração de renda.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-house benefit-icon"></i>
+                            <h5>Iniciativas Comunitárias</h5>
+                            <p>A separação do lixo pode estimular a criação de programas locais de reciclagem e manejo
+                                de resíduos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-megaphone benefit-icon"></i>
+                            <h5>Pressão por Políticas Públicas</h5>
+                            <p>A prática contínua da separação pode servir como pressão para que as autoridades
+                                implementem sistemas de coleta seletiva.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulário de Cadastro -->
+        <section id="inscricao" class="mb-5">
+            <h2 class="section-title">Cadastro de Pontos de Coleta Voluntários</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">
+                                Preencha o formulário abaixo para que tenha seu ponto adicionado ao mapa. <br>
+                                <strong>Observação:</strong> A inclusão no site pode demorar alguns dias, pois depende
+                                de avaliação humana.
+                            </p>
+
+                            <form id="volunteer-form">
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label">Nome do responsável</label>
+                                    <input type="text" class="form-control" id="nome" name="entry.1704902272" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="endereco" class="form-label">Endereço do ponto de coleta</label>
+                                    <input type="text" class="form-control" id="endereco" name="entry.899152083"
+                                        placeholder="Rua, Número, Bairro" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefone" class="form-label">Telefone para contato</label>
+                                    <input type="tel" class="form-control" id="telefone" name="entry.268666988"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="materiais" class="form-label">Tipos de materiais a receber</label>
+                                    <input type="text" class="form-control" id="materiais" name="entry.2031907264"
+                                        placeholder="Ex: Plástico, Vidro, Papelão" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Enviar Cadastro</button>
+                                <div id="form-status" class="mt-3"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-0">
+                &copy; 2025, Cássio Augusto Couto Soares. Todos os direitos reservados.
+            </p>
+        </div>
     </footer>
 
-    <button id="topBtn" title="Voltar ao topo">Voltar ao topo</button>
+    <!-- Botão: Voltar ao Topo -->
+    <button id="topBtn" class="btn btn-primary back-to-top" title="Voltar ao topo">
+        <i class="bi bi-arrow-up"></i>
+    </button>
 
+    <!-- Carregando scripts -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Marcadores -->
+    <script src="js/marcadores.js"></script>
+
+    <!-- Meus Scritps -->
     <script src="js/scripts.js"></script>
 </body>
 

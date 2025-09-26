@@ -1,4 +1,15 @@
-/* Reset básico */
+/* Variáveis CSS */
+:root {
+  --primary-color: #2e7d32;
+  --primary-dark: #1b5e20;
+  --primary-light: #4caf50;
+  --accent-color: #388e3c;
+  --text-dark: #333;
+  --text-light: #f4f4f4;
+  --bg-light: #f8f9fa;
+}
+
+/* Reset e estilos básicos */
 * {
   margin: 0;
   padding: 0;
@@ -7,267 +18,224 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding-top: 76px; /* Compensar a navbar fixa */
 }
 
-header {
-  background-color: #4caf50;
+/* Navbar */
+.navbar {
+  background-color: var(--primary-color) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: white !important;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1474&q=80");
+  background-size: cover;
+  background-position: center;
   color: white;
+  padding: 100px 0;
   text-align: center;
-  padding: 1.5em 0;
+  margin-top: -76px; /* Compensar o padding-top do body */
 }
 
-header h1 {
-  font-size: 2.5rem;
+/* Títulos das seções */
+.section-title {
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.5rem;
 }
 
-header p {
-  font-size: 1.2rem;
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--primary-light);
 }
 
-/* Menu de navegação */
-nav {
-  background-color: #45a049;
-  text-align: center;
-  padding: 1em 0;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: background-color 0.3s ease;
-}
-
-nav ul li a:hover {
-  background-color: #388e3c;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-/* Botão de menu para mobile */
-.menu-toggle {
-  display: none;
-  font-size: 2rem;
-  color: white;
-  background: none;
+/* Cards */
+.card {
   border: none;
-  cursor: pointer;
-  text-align: center;
-  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 1.5rem;
 }
 
-@media (max-width: 768px) {
-  nav ul {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .menu-visible {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-    margin: 0 auto;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
+.card:hover {
+  transform: translateY(-5px);
 }
 
-/* Botão de voltar ao topo */
-#topBtn {
-  display: none;
+.card-header {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  border: none;
+}
+
+/* Ícones de benefícios */
+.benefit-icon {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* Categorias de materiais */
+.material-category {
+  border-left: 4px solid;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.material-paper {
+  border-color: #2196f3;
+}
+.material-plastic {
+  border-color: #f44336;
+}
+.material-glass {
+  border-color: #4caf50;
+}
+.material-metal {
+  border-color: #ffc107;
+}
+.material-organic {
+  border-color: #795548;
+}
+
+/* Botões */
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Botão Voltar ao Topo */
+.back-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #45a049;
-  color: white;
-  border: none;
-  outline: none;
-  padding: 15px 20px;
-  border-radius: 5px;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
+  display: none;
+  z-index: 1000;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#topBtn:hover {
-  background-color: #388e3c;
-}
-
-/* Seções */
-section {
-  margin: 2em auto;
-  padding: 1.5em;
-  max-width: 800px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-section h2 {
-  color: #4caf50;
-  margin-bottom: 1em;
-  font-size: 2rem;
-}
-
-section p,
-section ul {
-  margin-bottom: 1em;
-  line-height: 1.6;
-}
-
-section ul {
-  list-style: none;
-}
-
-section ul li {
-  padding-left: 1.5em;
-  position: relative;
-  margin-bottom: 0.5em;
-}
-
-section ul li::before {
-  content: "✔";
-  position: absolute;
-  left: 0;
-  color: #4caf50;
-}
-
-/* Estilo para a imagem de reciclagem */
-.img-reciclagem {
-  width: 100%;
-  max-width: 800px;
-  border-radius: 10px;
-  margin: 1em 0;
-}
-
-/* Rodapé */
-footer {
-  text-align: center;
-  padding: 2em 0;
-  background-color: #45a049;
-  color: white;
-  margin-top: 2em;
-}
-
-/* Ajustes para mobile */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  nav ul li a {
-    font-size: 1rem;
-  }
-
-  section {
-    padding: 1em;
-    margin: 1em;
-  }
-
-  section h2 {
-    font-size: 1.5rem;
-  }
-
-  footer {
-    padding: 1em 0;
-  }
-}
-
-/* Estilo para o mapa interativo */
+/* Mapa */
 #mapa {
   height: 400px;
   width: 100%;
-  margin-top: 1em;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para o Formulário de Cadastro */
-#volunteer-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  margin-top: 1.5em;
-  padding: 2em;
-  background-color: #f9f9f9;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 0.5em;
-  font-weight: bold;
-  color: #333;
-}
-
-.form-group input {
-  padding: 0.8em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: #2e7d32; /* cor no foco */
-  box-shadow: 0 0 5px rgba(46, 125, 50, 0.5);
-}
-
-#volunteer-form .cta-button {
-  background-color: #4caf50;
+/* Footer */
+footer {
+  background-color: var(--primary-dark);
   color: white;
-  padding: 1em;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1em;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
 }
 
-#volunteer-form .cta-button:hover {
-  background-color: #388e3c;
+/* Formulário */
+.form-control:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
 }
 
-/* Estilo das mensagens de status */
+/* Status do formulário */
 #form-status {
-  margin-top: 1em;
-  padding: 1em;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: bold;
   display: none;
 }
 
 #form-status.success {
+  display: block;
   background-color: #d4edda;
   color: #155724;
-  display: block;
+  padding: 1em;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
 }
 
 #form-status.error {
+  display: block;
   background-color: #f8d7da;
   color: #721c24;
-  display: block;
+  padding: 1em;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Listas */
+.list-group-item {
+  border: none;
+  padding: 0.75rem 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 80px 0;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Animações suaves para scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ajustes para imagens */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Espaçamentos para seções */
+section {
+  scroll-margin-top: 100px;
 }
