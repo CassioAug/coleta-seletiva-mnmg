@@ -43,3 +43,65 @@ const ponto2 = L.marker([-18.609, -45.358]).addTo(map);
 ponto2.bindPopup(
   "<b>Ponto de coleta voluntário.</b><br>Recebe: Vidro e Metal."
 );
+
+// Formulário de Voluntários
+
+const form = document.getElementById("volunteer-form");
+const statusDiv = document.getElementById("form-status");
+
+if (form) {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    statusDiv.textContent = "Enviando, por favor aguarde...";
+    statusDiv.style.display = "block";
+    statusDiv.className = "info";
+
+    // Coleta os dados manualmente para garantir que estão corretos
+    const formData = {
+      "entry.1704902272": document.getElementById("nome").value,
+      "entry.899152083": document.getElementById("endereco").value,
+      "entry.268666988": document.getElementById("telefone").value,
+      "entry.2031907264": document.getElementById("materiais").value,
+    };
+
+    const urlEncodedData = new URLSearchParams(formData).toString();
+
+    const formActionURL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSei-pLTwslQSknAgEXQ1j6KOMD-BaiaLfjRHoo9dmC8VjzffQ/formResponse";
+
+    // debug log
+    console.log("Dados sendo enviados:", formData);
+    console.log("URL encoded:", urlEncodedData);
+
+    fetch(formActionURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: urlEncodedData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          statusDiv.textContent =
+            "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
+          statusDiv.className = "success";
+          form.reset();
+        } else {
+          throw new Error("Erro na resposta do servidor");
+        }
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+        statusDiv.textContent =
+          "Ocorreu um erro ao enviar seu cadastro. Por favor, tente novamente. Erro: " +
+          error.message;
+        statusDiv.className = "error";
+      })
+      .finally(() => {
+        setTimeout(() => {
+          statusDiv.style.display = "none";
+        }, 6000);
+      });
+  });
+}

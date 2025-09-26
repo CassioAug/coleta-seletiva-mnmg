@@ -225,19 +225,33 @@
     <section id="inscricao">
         <h2>Cadastro de Pontos de Coleta Voluntários</h2>
         <p>
-            <strong>Tem interesse em destinar, de forma voluntária, um ponto de coleta
-                seletiva?</strong>
+            Preencha o formulário abaixo para que tenha seu ponto adicionado ao mapa. <br>
+            <strong>Observação:</strong> A inclusão no site pode demorar alguns dias, pois depende de avaliação humana.
         </p>
-        <p>
-            Preenchendo o formulário abaixo entrarei em contato para organizar esse
-            ponto de coleta, e posteriormente, nesse site, irei incluir a
-            localização do seu ponto de coleta voluntário e o tipo de material a que
-            se destina.
-        </p>
-        <p>
-            Faça parte desse projeto!
-            <a href="https://forms.gle/zB85xoKvH7nnuH8LA">Inscreva-se aqui.</a>
-        </p>
+
+        <form id="volunteer-form" class="card">
+            <div class="form-group">
+                <label for="nome">Nome do responsável</label>
+                <input type="text" id="nome" name="entry.1704902272" required>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço do ponto de coleta</label>
+                <input type="text" id="endereco" name="entry.899152083" placeholder="Rua, Número, Bairro" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone para contato</label>
+                <input type="tel" id="telefone" name="entry.268666988" required>
+            </div>
+            <div class="form-group">
+                <label for="materiais">Tipos de materiais a receber</label>
+                <input type="text" id="materiais" name="entry.2031907264" placeholder="Ex: Plástico, Vidro, Papelão"
+                    required>
+            </div>
+            <button type="submit" class="cta-button">Enviar Cadastro</button>
+            <div id="form-status"></div>
+        </form>
+
+
     </section>
 
     <footer>
