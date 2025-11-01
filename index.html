@@ -386,28 +386,26 @@
                                 de avaliação humana.
                             </p>
 
-                            <form id="volunteer-form" action="https://api.web3forms.com/submit" method="POST">
-                                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                            <form id="volunteer-form">
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">Nome do responsável</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" required>
+                                    <input type="text" class="form-control" id="nome" name="entry.1704902272" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="endereco" class="form-label">Endereço do ponto de coleta</label>
-                                    <input type="text" class="form-control" id="endereco" name="endereco"
+                                    <input type="text" class="form-control" id="endereco" name="entry.899152083"
                                         placeholder="Rua, Número, Bairro" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="telefone" class="form-label">Telefone para contato</label>
-                                    <input type="tel" class="form-control" id="telefone" name="telefone"
+                                    <input type="tel" class="form-control" id="telefone" name="entry.268666988"
                                         required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="materiais" class="form-label">Tipos de materiais a receber</label>
-                                    <input type="text" class="form-control" id="materiais" name="materiais"
+                                    <input type="text" class="form-control" id="materiais" name="entry.2031907264"
                                         placeholder="Ex: Plástico, Vidro, Papelão" required>
                                 </div>
-                                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                                 <button type="submit" class="btn btn-primary w-100">Enviar Cadastro</button>
                                 <div id="form-status" class="mt-3"></div>
                             </form>
@@ -446,7 +444,6 @@
 
     <!-- Meus Scritps -->
     <script src="js/scripts.js"></script>
-    <script src="js/main.js"></script>
 </body>
 
 </html>

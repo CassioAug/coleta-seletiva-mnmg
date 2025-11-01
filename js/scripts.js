@@ -67,47 +67,57 @@ if (form) {
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const formData = new FormData(form);
-    const object = {};
-    formData.forEach(function (value, key) {
-      object[key] = value;
-    });
-    const json = JSON.stringify(object);
-
     statusDiv.textContent = "Enviando, por favor aguarde...";
     statusDiv.style.display = "block";
     statusDiv.className = "info";
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          statusDiv.textContent = "Obrigado por entrar em contato.";
-          statusDiv.className = "success";
-        } else {
-          console.log(response);
-          statusDiv.textContent = json.message;
-          statusDiv.className = "error";
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        statusDiv.textContent = "Ocorreu um erro ao enviar o formulário.";
-        statusDiv.className = "error";
-      })
-      .then(function () {
-        form.reset();
-        setTimeout(() => {
-          statusDiv.style.display = "none";
-        }, 6000);
-      });
+    // Coletando dados usando FormData
+    const formData = new FormData(form);
+    const urlEncodedData = new URLSearchParams(formData).toString();
+
+    const formActionURL =
+      "https://docs.google.com/forms/d/e/1FAIpQLSei-pLTwslQSknAgEXQ1j6KOMD-BaiaLfjRHoo9dmC8VjzffQ/formResponse";
+
+    // Criando um formulário temporário
+    const tempForm = document.createElement("form");
+    tempForm.style.display = "none";
+    tempForm.method = "POST";
+    tempForm.action = formActionURL;
+    tempForm.target = "hiddenIframe";
+
+    for (const [key, value] of formData.entries()) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = value;
+      tempForm.appendChild(input);
+    }
+
+    // iframe oculto para evitar redirecionamento
+    let iframe = document.getElementById("hiddenIframe");
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+      iframe.name = "hiddenIframe";
+      iframe.id = "hiddenIframe";
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+    }
+
+    document.body.appendChild(tempForm);
+    tempForm.submit();
+    document.body.removeChild(tempForm);
+
+    // Confirmação de envio
+    setTimeout(() => {
+      statusDiv.textContent =
+        "Cadastro enviado com sucesso! Muito obrigado pela colaboração.";
+      statusDiv.className = "success";
+      form.reset();
+
+      setTimeout(() => {
+        statusDiv.style.display = "none";
+      }, 6000);
+    }, 1000);
   });
 }
 
